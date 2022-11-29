@@ -46,9 +46,7 @@ public class UtenteDTO {
 	private StatoUtente stato;
 
 	private Long[] ruoliIds;
-	
-	private Set<Tavolo> tavoliCreati = new HashSet<>();
-	
+		
 	private Tavolo tavolo;
 
 	public UtenteDTO() {
@@ -141,14 +139,6 @@ public class UtenteDTO {
 
 	public void setCreditoAccumulato(Integer creditoAccumulato) {
 		this.creditoAccumulato = creditoAccumulato;
-	}
-	
-	public Set<Tavolo> getTavoliCreati() {
-		return tavoliCreati;
-	}
-
-	public void setTavoliCreati(Set<Tavolo> tavoliCreati) {
-		this.tavoliCreati = tavoliCreati;
 	}
 
 	public Tavolo getTavolo() {
