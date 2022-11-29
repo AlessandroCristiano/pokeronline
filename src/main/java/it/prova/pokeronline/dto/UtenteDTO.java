@@ -164,11 +164,6 @@ public class UtenteDTO {
 				this.esperienzaAccumulata, this.creditoAccumulato, this.dateCreated, this.stato);
 		if (includeIdRoles && ruoliIds != null)
 			result.setRuoli(Arrays.asList(ruoliIds).stream().map(id -> new Ruolo(id)).collect(Collectors.toSet()));
-		
-		if(this.tavoliCreati.size() > 0)
-			result.setTavoliCreati(tavoliCreati);
-		if(this.tavolo != null)
-			result.setTavolo(tavolo);
 
 		return result;
 	}

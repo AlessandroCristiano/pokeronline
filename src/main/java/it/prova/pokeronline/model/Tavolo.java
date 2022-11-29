@@ -36,7 +36,7 @@ public class Tavolo {
 	private Set<Utente> utenti = new HashSet<>(0);
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "utente_id", nullable = false)
+	@JoinColumn(name = "utenteCreazione_id", nullable = false)
 	private Utente utenteCreazione;
 
 	public Tavolo() {

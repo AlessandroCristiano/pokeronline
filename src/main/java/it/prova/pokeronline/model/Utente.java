@@ -50,12 +50,12 @@ public class Utente {
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 	private Set<Ruolo> ruoli = new HashSet<>(0);
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteCreazione")
-	private Set<Tavolo> tavoliCreati = new HashSet<>(0);
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteCreazione")
+//	private Set<Tavolo> tavoliCreati = new HashSet<>(0);
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "tavolo_id")
-	private Tavolo tavolo;
+	private Tavolo tavolo;   //tavolo in cui gioca l'utente
 	
 
 	public Utente() {
@@ -170,13 +170,13 @@ public class Utente {
 		this.ruoli = ruoli;
 	}
 
-	public Set<Tavolo> getTavoliCreati() {
-		return tavoliCreati;
-	}
-
-	public void setTavoliCreati(Set<Tavolo> tavoliCreati) {
-		this.tavoliCreati = tavoliCreati;
-	}
+//	public Set<Tavolo> getTavoliCreati() {
+//		return tavoliCreati;
+//	}
+//
+//	public void setTavoliCreati(Set<Tavolo> tavoliCreati) {
+//		this.tavoliCreati = tavoliCreati;
+//	}
 
 	public Tavolo getTavolo() {
 		return tavolo;
