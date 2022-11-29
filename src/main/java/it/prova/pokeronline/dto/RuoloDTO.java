@@ -4,8 +4,9 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import it.prova.pokeronline.model.Ruolo;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+import it.prova.pokeronline.model.Ruolo;
 
 public class RuoloDTO {
 

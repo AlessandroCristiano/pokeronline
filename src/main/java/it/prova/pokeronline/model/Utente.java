@@ -68,6 +68,14 @@ public class Utente {
 	}
 
 	
+	public Utente(Long id, String username, String nome, String cognome) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.nome = nome;
+		this.cognome = cognome;
+	}
+
 	public Utente(Long id, String username, String password, String nome, String cognome, Integer esperienzaAccumulata,
 			Integer creditoAccumulato, LocalDate dateCreated, StatoUtente stato) {
 		super();
