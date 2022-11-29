@@ -50,7 +50,7 @@ public class Utente {
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
 	private Set<Ruolo> ruoli = new HashSet<>(0);
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utente")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utenteCreazione")
 	private Set<Tavolo> tavoliCreati = new HashSet<>(0);
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -65,6 +65,21 @@ public class Utente {
 		super();
 		this.username = username;
 		this.password = password;
+	}
+
+	
+	public Utente(Long id, String username, String password, String nome, String cognome, Integer esperienzaAccumulata,
+			Integer creditoAccumulato, LocalDate dateCreated, StatoUtente stato) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.dateCreated = dateCreated;
+		this.esperienzaAccumulata = esperienzaAccumulata;
+		this.creditoAccumulato = creditoAccumulato;
+		this.stato = stato;
 	}
 
 	public Utente(String username, String password, String nome, String cognome, LocalDate dateCreated) {
