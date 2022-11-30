@@ -2,10 +2,10 @@ package it.prova.pokeronline.repository.tavolo;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.model.Tavolo;
 
 public interface TavoloRepository extends CrudRepository<Tavolo, Long>{
@@ -14,6 +14,8 @@ public interface TavoloRepository extends CrudRepository<Tavolo, Long>{
 	Tavolo findByIdEager(Long idTavolo);
 	
 	List<Tavolo> findByEsperienzaMinLessThan(Integer esperienza);
+	
+	Tavolo findByUtentiId(Long id);
 	
 	
 	

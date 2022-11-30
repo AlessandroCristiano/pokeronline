@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.pokeronline.model.StatoUtente;
+import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
+import it.prova.pokeronline.repository.tavolo.TavoloRepository;
 import it.prova.pokeronline.repository.utente.UtenteRepository;
+import it.prova.pokeronline.web.api.exception.UtenteInNessunTavoloException;
 
 @Service
 @Transactional(readOnly = true)
@@ -21,6 +24,9 @@ public class UtenteServiceImpl implements UtenteService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private TavoloRepository tavoloRepository;
 
 	public List<Utente> listAllUtenti() {
 		return (List<Utente>) repository.findAll();
@@ -92,6 +98,28 @@ public class UtenteServiceImpl implements UtenteService {
 
 	public Utente findByUsername(String username) {
 		return repository.findByUsername(username).orElse(null);
+	}
+
+	@Override
+	public Tavolo dammiLastGame(Utente utente) {
+		
+		Tavolo result = tavoloRepository.findByUtentiId(utente.getId());
+		
+		if(result == null)
+			throw new UtenteInNessunTavoloException("Utente non in gioco");
+		
+		return result;
+	}
+
+	@Override
+	@Transactional
+	public void abbandonaPartita(Utente utente) {
+		Tavolo result = tavoloRepository.findByUtentiId(utente.getId());
+		
+		if(result==null) {
+			
+		}
+		
 	}
 
 

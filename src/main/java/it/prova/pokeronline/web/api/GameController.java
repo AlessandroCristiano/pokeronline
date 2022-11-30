@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.dto.UtenteDTO;
+import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.service.TavoloService;
 import it.prova.pokeronline.service.UtenteService;
+import it.prova.pokeronline.web.api.exception.UtenteNotFoundException;
 
 @RestController
 @RequestMapping("/api/game")
@@ -59,5 +61,27 @@ public class GameController {
 		tavoloService.gioca(id, username);
 	}
 	
+	@GetMapping("/lastGame")
+	public TavoloDTO lastGame() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Utente utenteLoggato = utenteService.findByUsername(username);
+		
+		Tavolo result = utenteService.dammiLastGame(utenteLoggato);
+		
+		return TavoloDTO.buildTavoloDTOFromModel(result, false);
+	}
+	
+	@GetMapping("/abbandona")
+	@ResponseStatus(HttpStatus.OK)
+	public void abbandona() {
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Utente utenteLoggato = utenteService.findByUsername(username);
+
+		if (utenteLoggato == null) {
+			throw new UtenteNotFoundException("Utente non trovato");
+		}
+		
+		utenteService.abbandonaPartita(utenteLoggato);
+	}
 	
 }
