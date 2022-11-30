@@ -13,6 +13,7 @@ import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.repository.tavolo.TavoloRepository;
 import it.prova.pokeronline.repository.utente.UtenteRepository;
+import it.prova.pokeronline.web.api.exception.TavoloNotFoundException;
 import it.prova.pokeronline.web.api.exception.UtenteInNessunTavoloException;
 
 @Service
@@ -117,9 +118,10 @@ public class UtenteServiceImpl implements UtenteService {
 		Tavolo result = tavoloRepository.findByUtentiId(utente.getId());
 		
 		if(result==null) {
-			
+			throw new TavoloNotFoundException("Non puoi abbandonare la partita perche non sei in un tavolo");
 		}
-		
+		utente.setEsperienzaAccumulata(utente.getEsperienzaAccumulata() + 1);
+		result.getUtenti().remove(utente);
 	}
 
 
