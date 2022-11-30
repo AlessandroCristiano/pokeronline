@@ -32,7 +32,7 @@ public class Tavolo {
 	@Column(name = "datacreazione")
 	private LocalDate dataCreazione;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tavolo")
+	@OneToMany(fetch = FetchType.LAZY)
 	private Set<Utente> utenti = new HashSet<>(0);
 	
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -129,5 +129,4 @@ public class Tavolo {
 		this.utenteCreazione = utenteCreazione;
 	}
 	
-
 }

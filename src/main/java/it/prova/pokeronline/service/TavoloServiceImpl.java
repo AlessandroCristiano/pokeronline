@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.dto.UtenteDTO;
 import it.prova.pokeronline.model.Tavolo;
 import it.prova.pokeronline.model.Utente;
@@ -75,6 +76,16 @@ public class TavoloServiceImpl implements TavoloService{
 	public void rimuovi(Long idToRemove) {
 		repository.deleteById(idToRemove);		
 		
+	}
+
+	@Override
+	public List<Tavolo> findByEsperienzaMinimaLessThan() {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Utente utenteLoggato = utenteService.findByUsername(username);
+		Integer esperienzaAccumulata = utenteLoggato.getEsperienzaAccumulata();
+		
+		return repository.findByEsperienzaMinLessThan(esperienzaAccumulata);
 	}
 
 }
