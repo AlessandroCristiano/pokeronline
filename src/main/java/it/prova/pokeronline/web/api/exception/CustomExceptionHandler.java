@@ -68,5 +68,52 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(TavoloNotFoundException.class)
+	public ResponseEntity<Object> handleTavoloNotFoundException(TavoloNotFoundException ex, WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", ex.getMessage());
+		body.put("status", HttpStatus.NOT_FOUND);
+
+		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler(PermessoNegatoException.class)
+	public ResponseEntity<Object> handlePermessoNegatoException(PermessoNegatoException ex,
+			WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", ex.getMessage());
+		body.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
+
+		return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(UtenteInAltroTavoloException.class)
+	public ResponseEntity<Object> handleUtenteInAltroTavoloException(UtenteInAltroTavoloException ex,
+			WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", ex.getMessage());
+		body.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
+
+		return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(UtenteInNessunTavoloException.class)
+	public ResponseEntity<Object> handleUtenteInNessunTavoloException(UtenteInNessunTavoloException ex,
+			WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", ex.getMessage());
+		body.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
+
+		return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
 
 }
