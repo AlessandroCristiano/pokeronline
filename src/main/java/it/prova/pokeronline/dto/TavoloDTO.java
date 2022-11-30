@@ -19,10 +19,10 @@ public class TavoloDTO {
 	
 	private Long id;
 	
-	@NotBlank(message = "{esperienzaMin.notblank}")
+	@NotNull(message = "{esperienzaMin.notblank}")
 	private Integer esperienzaMin;
 	
-	@NotBlank(message = "{cifraMinima.notblank}")
+	@NotNull(message = "{cifraMinima.notblank}")
 	private Integer cifraMinima;
 	
 	@NotBlank(message = "{denominazione.notblank}")
@@ -34,7 +34,6 @@ public class TavoloDTO {
 	private Set<UtenteDTO> utenti = new HashSet<UtenteDTO>(0);
 	
 	@JsonIgnoreProperties(value = { "tavolo" })
-	@NotNull(message = "utenteCreazione.notnull")
 	private UtenteDTO utenteCreazione;
 
 	public TavoloDTO() {
@@ -122,7 +121,7 @@ public class TavoloDTO {
 	
 	public Tavolo buildFromModel() {
 		Tavolo result = new Tavolo(this.id, this.esperienzaMin, this.cifraMinima, this.denominazione,
-				this.dataCreazione, this.utenteCreazione.buildUtenteModel(false));
+				this.dataCreazione);
 		if (utenti.size() != 0) {
 			for (UtenteDTO giocatoreItem : utenti) {
 				result.getUtenti().add(giocatoreItem.buildUtenteModel(false));

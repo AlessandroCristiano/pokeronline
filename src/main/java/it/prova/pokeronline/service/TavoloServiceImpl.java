@@ -1,12 +1,16 @@
 package it.prova.pokeronline.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.pokeronline.dto.UtenteDTO;
 import it.prova.pokeronline.model.Tavolo;
+import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.repository.tavolo.TavoloRepository;
 
 @Service
@@ -15,6 +19,9 @@ public class TavoloServiceImpl implements TavoloService{
 	
 	@Autowired
 	private TavoloRepository repository;
+	
+	@Autowired
+	private UtenteService utenteService;
 
 	@Override
 	public List<Tavolo> listAllTavoli() {
@@ -44,20 +51,29 @@ public class TavoloServiceImpl implements TavoloService{
 	}
 
 	@Override
+	@Transactional
 	public Tavolo aggiorna(Tavolo tavoloInstance) {
-		// TODO Auto-generated method stub
-		return null;
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Utente utenteLoggato = utenteService.findByUsername(username);
+		
+		tavoloInstance.setId(utenteLoggato.getId());
+		tavoloInstance.setUtenteCreazione(utenteService.findByUsername(username));
+		return repository.save(tavoloInstance);
 	}
 
 	@Override
-	public Tavolo inserisciNuovo(Tavolo tavoloInstance) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public Tavolo inserisciNuovo(Tavolo tavoloInstance) {	
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		tavoloInstance.setUtenteCreazione(utenteService.findByUsername(username));
+		tavoloInstance.setDataCreazione(LocalDate.now());
+		return repository.save(tavoloInstance);
 	}
 
 	@Override
+	@Transactional
 	public void rimuovi(Long idToRemove) {
-		// TODO Auto-generated method stub
+		repository.deleteById(idToRemove);		
 		
 	}
 
