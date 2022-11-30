@@ -25,5 +25,7 @@ public interface TavoloService {
 	List<Tavolo> findByEsperienzaMinimaLessThan();
 	
 	void gioca(Long id, String username);
+	
+	public List<Tavolo> findByExample(Tavolo example);
 
 }

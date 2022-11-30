@@ -110,5 +110,10 @@ public class TavoloController {
 			throw new PermessoNegatoException("Non hai i permessi per Eliminare questo elemento!");
 		}
 	}
+	
+	@PostMapping("/search")
+	public List<TavoloDTO> search(@RequestBody TavoloDTO example) {
+		return TavoloDTO.createTavoloDTOListFromModelList(tavoloService.findByExample(example.buildFromModel()), false);
+	}
 
 }

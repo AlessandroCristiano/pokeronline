@@ -137,4 +137,9 @@ public class TavoloServiceImpl implements TavoloService{
 		repository.save(tavoloReload);
 	}
 
+	@Override
+	public List<Tavolo> findByExample(Tavolo example) {
+		return repository.findByExample(example);
+	}
+
 }
