@@ -71,8 +71,7 @@ public class UtenteServiceImpl implements UtenteService {
 	}
 
 	public List<Utente> findByExample(Utente example) {
-		// TODO Da implementare
-		return listAllUtenti();
+		return repository.findByExample(example);
 	}
 
 	public Utente eseguiAccesso(String username, String password) {

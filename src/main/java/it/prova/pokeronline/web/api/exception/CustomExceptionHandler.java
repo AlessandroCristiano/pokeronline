@@ -35,17 +35,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(body, headers, status);
 	}
 
-	@ExceptionHandler(TavoloNotFoundException.class)
-	public ResponseEntity<Object> handleRegistaNotFoundException(TavoloNotFoundException ex, WebRequest request) {
-
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", LocalDateTime.now());
-		body.put("message", ex.getMessage());
-		body.put("status", HttpStatus.NOT_FOUND);
-
-		return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-	}
-
 	@ExceptionHandler(IdNotNullForInsertException.class)
 	public ResponseEntity<Object> handleIdNotNullForInsertException(IdNotNullForInsertException ex,
 			WebRequest request) {
@@ -106,6 +95,18 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(UtenteInNessunTavoloException.class)
 	public ResponseEntity<Object> handleUtenteInNessunTavoloException(UtenteInNessunTavoloException ex,
+			WebRequest request) {
+
+		Map<String, Object> body = new LinkedHashMap<>();
+		body.put("timestamp", LocalDateTime.now());
+		body.put("message", ex.getMessage());
+		body.put("status", HttpStatus.UNPROCESSABLE_ENTITY);
+
+		return new ResponseEntity<>(body, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+	
+	@ExceptionHandler(CreditoInsufficenteException.class)
+	public ResponseEntity<Object> handleCreditoInsufficenteException(CreditoInsufficenteException ex,
 			WebRequest request) {
 
 		Map<String, Object> body = new LinkedHashMap<>();

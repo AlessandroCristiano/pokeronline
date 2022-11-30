@@ -1,5 +1,6 @@
 package it.prova.pokeronline.web.api;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -107,5 +108,10 @@ public class UtenteController {
 		utenteInput.setId(id);
 		Utente utenteAggiornato = utenteService.aggiorna(utenteInput.buildUtenteModel(true));
 		return UtenteDTO.buildUtenteDTOFromModel(utenteAggiornato);
+	}
+	
+	@PostMapping("/search")
+	public List<UtenteDTO> search(@RequestBody UtenteDTO example) {
+		return UtenteDTO.createUtenteDTOListFromModelList(utenteService.findByExample(example.buildUtenteModel(false)));
 	}
 }
