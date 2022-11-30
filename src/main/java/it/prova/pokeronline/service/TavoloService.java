@@ -23,5 +23,7 @@ public interface TavoloService {
 	void rimuovi(Long idToRemove);
 	
 	List<Tavolo> findByEsperienzaMinimaLessThan();
+	
+	void gioca(Long id, String username);
 
 }

@@ -49,8 +49,15 @@ public class GameController {
 		return TavoloDTO.createTavoloDTOListFromModelList(tavoloService.findByEsperienzaMinimaLessThan(), true);
 	}
 	
-//	@GetMapping("/giocaA/{idTavolo}")
-//	@ResponseStatus(HttpStatus.OK)
-//	public 
+	@GetMapping("/giocaA/{idTavolo}")
+	@ResponseStatus(HttpStatus.OK)
+	public void gioca(@PathVariable(value = "idTavolo", required = true) Long id) {
+		
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		Utente utenteLoggato = utenteService.findByUsername(username);
+		
+		tavoloService.gioca(id, username);
+	}
+	
 	
 }
