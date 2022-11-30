@@ -5,15 +5,15 @@ import java.util.List;
 import it.prova.pokeronline.model.Tavolo;
 
 public interface TavoloService {
-	List<Tavolo> listAllElements();
+	List<Tavolo> listAllTavoli();
 	
 	List<Tavolo> listAllElementsEager();
 	
 	List<Tavolo>findByUsername();
 
-	Tavolo caricaSingoloElemento(Long id);
+	Tavolo caricaSingoloTavolo(Long id);
 	
-	Tavolo caricaSingoloElementoConUtenza(Long id);
+	Tavolo caricaSingoloTavoloConUtenza(Long id);
 
 	Tavolo aggiorna(Tavolo tavoloInstance);
 

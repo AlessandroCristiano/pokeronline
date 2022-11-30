@@ -17,7 +17,7 @@ public class TavoloServiceImpl implements TavoloService{
 	private TavoloRepository repository;
 
 	@Override
-	public List<Tavolo> listAllElements() {
+	public List<Tavolo> listAllTavoli() {
 		return (List<Tavolo>) repository.findAll();
 	}
 
@@ -34,13 +34,13 @@ public class TavoloServiceImpl implements TavoloService{
 	}
 
 	@Override
-	public Tavolo caricaSingoloElemento(Long id) {
+	public Tavolo caricaSingoloTavolo(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tavolo caricaSingoloElementoConUtenza(Long id) {
+	public Tavolo caricaSingoloTavoloConUtenza(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
