@@ -35,14 +35,12 @@ public class TavoloServiceImpl implements TavoloService{
 
 	@Override
 	public Tavolo caricaSingoloTavolo(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Tavolo caricaSingoloTavoloConUtenza(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findByIdEager(id);
 	}
 
 	@Override
