@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import it.prova.pokeronline.model.Ruolo;
 import it.prova.pokeronline.model.Utente;
 import it.prova.pokeronline.service.RuoloService;
-import it.prova.pokeronline.service.TavoloService;
 import it.prova.pokeronline.service.UtenteService;
 
 @SpringBootApplication
@@ -22,9 +21,6 @@ public class PokeronlineApplication implements CommandLineRunner{
 	@Autowired
 	private UtenteService utenteServiceInstance;
 	
-	@Autowired
-	private TavoloService tavoloServiceInstance;
-
 	public static void main(String[] args) {
 		SpringApplication.run(PokeronlineApplication.class, args);
 	}

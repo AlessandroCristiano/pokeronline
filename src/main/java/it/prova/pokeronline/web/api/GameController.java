@@ -56,7 +56,6 @@ public class GameController {
 	public void gioca(@PathVariable(value = "idTavolo", required = true) Long id) {
 		
 		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-		Utente utenteLoggato = utenteService.findByUsername(username);
 		
 		tavoloService.gioca(id, username);
 	}
