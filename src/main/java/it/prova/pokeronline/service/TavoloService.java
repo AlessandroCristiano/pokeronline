@@ -2,7 +2,6 @@ package it.prova.pokeronline.service;
 
 import java.util.List;
 
-import it.prova.pokeronline.dto.TavoloDTO;
 import it.prova.pokeronline.model.Tavolo;
 
 public interface TavoloService {
